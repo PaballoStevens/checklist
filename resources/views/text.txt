@@ -1,0 +1,336 @@
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+
+<style>
+    body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: left;
+    background-color: #6200EA;
+}
+
+i {
+    font-style: italic;
+}
+
+.container{
+    margin-top:100px;
+}
+
+.card {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    border-width: 0;
+    transition: all .2s;
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0.625rem;
+    height: 3.5rem;
+    background-color: #fff;
+}
+.widget-subheading{
+    color: #858a8e;
+    font-size: 10px;
+}
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.card-header .header-icon {
+    font-size: 1.65rem;
+    margin-right: 0.625rem;
+}
+
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.btn-actions-pane-right {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.scroll-area-sm {
+    height: 288px;
+    overflow-x: hidden;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.todo-indicator {
+    position: absolute;
+    width: 4px;
+    height: 60%;
+    border-radius: 0.3rem;
+    left: 0.625rem;
+    top: 20%;
+    opacity: .6;
+    transition: opacity .2s;
+}
+
+.bg-warning {
+    background-color: #f7b924 !important;
+}
+
+.widget-content {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+}
+
+.widget-content .widget-content-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    align-items: center;
+}
+
+.widget-content .widget-content-right.widget-content-actions {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.widget-content .widget-content-right {
+    margin-left: auto;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.btn-outline-success {
+    color: #3ac47d;
+    border-color: #3ac47d;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #3f6ad8;
+    border-color: #3f6ad8;
+}
+.btn { 
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    outline: none !important;
+}
+
+.card-footer{
+    background-color: #fff;
+}
+</style>
+
+<body>
+
+    <div class="row d-flex justify-content-center container">
+        <div class="col-md-8">
+          <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+              <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                  class="fa fa-tasks"></i>&nbsp;Task Lists</div>
+              
+            </div>
+            <div class="scroll-area-sm">
+              <perfect-scrollbar class="ps-show-limits">
+                <div style="position: static;" class="ps ps--active-y">
+                  <div class="ps-content">
+                    <ul class=" list-group list-group-flush">
+                        @foreach ($checklist as $item)
+                        @if ($item->status == '1')
+                        <li class="list-group-item">
+                            <div class="todo-indicator bg-danger"></div>
+                            <div class="widget-content p-0">
+                              <div class="widget-content-wrapper">
+                                <div class="widget-content-left mr-2">
+                                  <div class="custom-checkbox custom-control">
+                                    <input class="custom-control-input"
+                                      id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label"
+                                      for="exampleCustomCheckbox12">&nbsp;</label>
+                                    </div>
+                                </div>
+                                <div class="widget-content-left">
+                                  <div class="widget-heading">{{$item->body}} <div class="badge badge-danger ml-2">Pending</div>
+                                  </div>
+                                  <div class="widget-subheading"><i>By 
+                                     {{$item->name}}
+                                  </i></div>
+                                </div>
+                              <div class="widget-content-right">
+                                <a href="/home/{{$item->id}}" class="border-0 btn-transition btn btn-outline-success" >
+                                    <i class="fa fa-check"></i></a>
+                                    <a href="/home/{{$item->id}}" class="border-0 btn-transition btn btn-outline-danger">
+                                   <i class="fa fa-trash"></i>
+                                    </a>
+                              </div>
+                              </div>
+                            </div>
+                          </li>
+                          @elseif($item->status == '2')
+                          <li class="list-group-item">
+                            <div class="todo-indicator bg-success"></div>
+                            <div class="widget-content p-0">
+                              <div class="widget-content-wrapper">
+                                <div class="widget-content-left mr-2">
+                                  <div class="custom-checkbox custom-control">
+                                    <input class="custom-control-input"
+                                      id="exampleCustomCheckbox12" type="checkbox" checked><label class="custom-control-label"
+                                      for="exampleCustomCheckbox12">&nbsp;</label>
+                                    </div>
+                                </div>
+                                <div class="widget-content-left">
+                                  <div class="widget-heading">{{$item->body}} <div class="badge badge-success ml-2">Complate</div>
+                                  </div>
+                                  <div class="widget-subheading"><i>By @if ($item->id = Auth::user()->id)
+                                      Me
+                                    @else
+                                     {{$item->name}}
+                                  @endif</i></div>
+                                </div>
+                                <hr/>
+                              <div class="widget-content-right">
+                                  <a href="/home/{{$item->id}}" class="border-0 btn-transition btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#myEdit">
+                                 <i class="fa fa-trash"></i>
+                                  </a>
+                              </div>
+                              </div>
+                            </div>
+                          </li>
+                        @endif
+                        
+                        @endforeach
+                     
+                    </ul>
+                  </div>
+                  
+                </div>
+              </perfect-scrollbar>
+            </div>
+            <div class="d-block text-right card-footer"><button class="mr-2 btn btn-link btn-sm">Cancel</button><button
+                class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add Task</button></div>
+          </div>
+        </div>
+        </div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/home" method="Post">
+            @csrf
+            <div class="mb-3">
+                <input type="hidden" name="userid" value='{{ Auth::user()->id }}'/>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Content</label>
+                <input type="text" class="form-control" name="body">
+              </div>
+              <div class="mb-6">
+                <label for="exampleInputPassword1" class="form-label">Assign</label>
+                <br/>
+                <select class="form-control" name="house" >
+                    @foreach ($users as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                       
+                    </select>
+              </div>
+        <div class="modal-footer">
+        <button class="btn btn-danger text-white" type="button" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary text-white" type="submit" >Add New Task</button>
+    </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myEdit">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/home" method="Post">
+            @csrf
+            <div class="mb-3">
+                <input type="hidden" name="userid" value='{{ Auth::user()->id }}'/>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Content</label>
+                <input type="text" class="form-control" name="body">
+              </div>
+              <div class="mb-6">
+                <label for="exampleInputPassword1" class="form-label">Assign</label>
+                <br/>
+                <select class="form-control" name="house" >
+                    @foreach ($users as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                       
+                    </select>
+              </div>
+        <div class="modal-footer">
+        <button class="btn btn-danger text-white" type="button" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary text-white" type="submit" >Add New Task</button>
+    </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
